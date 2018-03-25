@@ -9,12 +9,12 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='cj',
-    version='0.1',
+    version='0.3',
     packages=find_packages(),
     include_package_data=True,
     entry_points = {
         'console_scripts': [
-            'cj=cj:main'
+            'cj=cj.cli:main'
         ],
     },
     license='MIT License',
