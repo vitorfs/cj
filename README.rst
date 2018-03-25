@@ -14,7 +14,7 @@ The usage varies from command-line utilities, automation scripts to cron tasks.
 Installation
 ------------
 
-Using `pip`:
+Using pip:
 
 .. code-block:: console
 
