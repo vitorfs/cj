@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import uuid
 import os
 import sys
 import subprocess
@@ -45,7 +44,7 @@ def wp(args):
         os.remove(dump_file)
 
 
-def cjzip(args):
+def tar(args):
     PATH = 2
     if len(args) > 2:
         path = args[PATH]
@@ -66,14 +65,14 @@ COMMAND_DESCRIPTION = 2
 COMMANDS = (
     # command, function, description
     ('wp', wp, 'Wrapper of Wordpress utilities'),
-    ('zip', cjzip, 'Compress file or folder'),
-    ('unzip', cjunzip, 'Decompress file or folder'),
+    ('zip', tar, 'Compress file or folder'),
 )
 
 
 def help():
     HELP_COMMAND_PADDING = 15  # Spacing between the command name and the description
     str_commands = ''
+
     for command in COMMANDS:
         name = command[COMMAND_NAME]
         description = command[COMMAND_DESCRIPTION]
@@ -89,8 +88,8 @@ def help():
             endcommand=ENDC
         )
         str_commands = '{commands}{append}'.format(commands=str_commands, append=str_command)
-    sys.stdout.write('''
-{bold}Usage:{endcommand} {primary}cj COMMAND{endcommand}
+
+    sys.stdout.write('''{bold}Usage:{endcommand} {primary}cj COMMAND{endcommand}
 
 For more details about the commands, type {primary}cj help TOPIC{endcommand} for more details:
 
@@ -98,7 +97,8 @@ For more details about the commands, type {primary}cj help TOPIC{endcommand} for
 '''.format(bold=BOLD, endcommand=ENDC, primary=PRIMARY, commands=str_commands))
 
 
-def main(args):
+def main():
+    args = sys.argv
     if len(args) == 1:
         return help()
     else:
@@ -113,4 +113,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
