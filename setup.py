@@ -7,9 +7,11 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
+version = __import__('cj').__version__
+
 setup(
     name='cj',
-    version='0.3',
+    version=version,
     packages=find_packages(),
     include_package_data=True,
     entry_points = {

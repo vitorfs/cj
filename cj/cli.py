@@ -5,6 +5,8 @@ import sys
 import subprocess
 import datetime
 
+from cj import VERSION
+
 
 PRIMARY = '\033[94m'
 SUCCESS = '\033[92m'
@@ -55,8 +57,11 @@ def tar(args):
 '''.format(danger=DANGER, bold=BOLD, primary=PRIMARY, endcommand=ENDC))
 
 
-def cjunzip(args):
-    sys.stdout.write('Unzip commands.\n')
+def tex(args):
+    '''
+    Wrapper of the `pandoc` program
+    '''
+    subprocess.call(['pandoc', 'main.tex', '--bibliography=ref.bib', '-S', '-o', 'main.docx'])
 
 
 COMMAND_NAME = 0
@@ -66,6 +71,7 @@ COMMANDS = (
     # command, function, description
     ('wp', wp, 'Wrapper of Wordpress utilities'),
     ('zip', tar, 'Compress file or folder'),
+    ('tex', tex, 'Convert a LaTeX document to Word format'),
 )
 
 
@@ -89,12 +95,14 @@ def help():
         )
         str_commands = '{commands}{append}'.format(commands=str_commands, append=str_command)
 
-    sys.stdout.write('''{bold}Usage:{endcommand} {primary}cj COMMAND{endcommand}
+    sys.stdout.write('''{bold}CJ {version}{endcommand}
+
+Usage: {primary}cj COMMAND{endcommand}
 
 For more details about the commands, type {primary}cj help TOPIC{endcommand} for more details:
 
 {commands}
-'''.format(bold=BOLD, endcommand=ENDC, primary=PRIMARY, commands=str_commands))
+'''.format(bold=BOLD, version=VERSION, endcommand=ENDC, primary=PRIMARY, commands=str_commands))
 
 
 def main():
