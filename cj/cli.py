@@ -64,6 +64,10 @@ def tex(args):
     subprocess.call(['pandoc', 'main.tex', '--bibliography=ref.bib', '-S', '-o', 'main.docx'])
 
 
+def pyc(self):
+    subprocess.call(['find', '.', '-name', '\*.pyc', '-delete'])
+
+
 COMMAND_NAME = 0
 COMMAND_FUNCTION = 1
 COMMAND_DESCRIPTION = 2
@@ -72,6 +76,7 @@ COMMANDS = (
     ('wp', wp, 'Wrapper of Wordpress utilities'),
     ('zip', tar, 'Compress file or folder'),
     ('tex', tex, 'Convert a LaTeX document to Word format'),
+    ('pyc', pyc, 'Remove all .pyc files recursively'),
 )
 
 
