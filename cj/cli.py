@@ -65,7 +65,19 @@ def tex(args):
 
 
 def pyc(self):
+    '''
+    Search and delete all `.pyc` files recursively
+    starting from the directory where the command was invoked.
+    '''
     subprocess.call(['find', '.', '-name', '\*.pyc', '-delete'])
+
+
+def pip(self):
+    '''
+    Wrapper of the `pip` program to list outdated libraries
+    using columns format to avoid deprecation warning.
+    '''
+    subprocess.call(['pip', 'list', '--outdated', '--format=columns'])
 
 
 COMMAND_NAME = 0
@@ -77,6 +89,7 @@ COMMANDS = (
     ('zip', tar, 'Compress file or folder'),
     ('tex', tex, 'Convert a LaTeX document to Word format'),
     ('pyc', pyc, 'Remove all .pyc files recursively'),
+    ('pip', pip, 'List outdated Python packages'),
 )
 
 
